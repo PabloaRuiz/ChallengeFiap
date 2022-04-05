@@ -1,4 +1,4 @@
-package com.fiap.challengefiap.service.controller;
+package com.fiap.challengefiap.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -64,7 +64,7 @@ public class ClienteControllerTest {
         Cliente cliente = new Cliente(1l, 1935835634, "Ipa", "Pablo");
         cliente.adicionaBebidas(cerveja);
         cliente.adicionaEstabelecimento(Bar);
-        ClienteInfDTO clienteDTO = new ClienteInfDTO(1l, "Pablo", "Ipa", null, cliente.getCalcularTicketMedio());
+        ClienteInfDTO clienteDTO = new ClienteInfDTO(1l, "Pablo", "Ipa", null, cliente.getCalcularTicketMedio(), cliente.getClassificacao());
 
 
         BDDMockito.given(service.buscar(cliente.getTelefone()))

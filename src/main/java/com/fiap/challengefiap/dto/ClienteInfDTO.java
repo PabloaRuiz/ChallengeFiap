@@ -2,11 +2,11 @@ package com.fiap.challengefiap.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fiap.challengefiap.entity.Cliente;
+import com.fiap.challengefiap.entity.enums.Classificacao;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Optional;
 
 
 @Getter
@@ -31,6 +31,10 @@ public class ClienteInfDTO {
     @JsonProperty("Ticket médio")
     private BigDecimal ticket;
 
+    @JsonProperty("Classificacao")
+    private Classificacao classificacao;
+
+
 
     public ClienteInfDTO transformar(Cliente cliente) {
         return new ClienteInfDTO(
@@ -38,7 +42,8 @@ public class ClienteInfDTO {
                 cliente.getNome(),
                 cliente.getcervejaFavorita(),
                 cliente.getEstabelecimentos().get(0).getVisita(),
-                cliente.getCalcularTicketMedio());
+                cliente.getCalcularTicketMedio(),
+                cliente.getClassificacao());
     }
 
 }

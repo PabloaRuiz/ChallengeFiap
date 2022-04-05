@@ -5,5 +5,4 @@ public enum Classificacao {
     novato,
     medio,
     consistente;
-
 }

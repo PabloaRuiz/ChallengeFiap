@@ -1,5 +1,7 @@
 package com.fiap.challengefiap.entity;
 
+import com.fiap.challengefiap.entity.enums.Classificacao;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -19,6 +21,7 @@ public class Cliente {
     private int telefone;
     private String cervejaFavorita;
     private String nome;
+    private Classificacao classificacao;
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "cliente_id"),
@@ -40,9 +43,9 @@ public class Cliente {
 
     public Cliente(Long id, int telefone, String cervejaFavorita, String nome) {
         this.id = id;
-        telefone = telefone;
-        cervejaFavorita = cervejaFavorita;
-        nome = nome;
+        this.telefone = telefone;
+        this.cervejaFavorita = cervejaFavorita;
+        this.nome = nome;
     }
 
     public Long getId() {
@@ -101,14 +104,35 @@ public class Cliente {
         this.Bebidas = bebidas;
     }
 
+    public String getCervejaFavorita() {
+        return cervejaFavorita;
+    }
+
+    public void setCervejaFavorita(String cervejaFavorita) {
+        this.cervejaFavorita = cervejaFavorita;
+    }
+
+    public Classificacao getClassificacao() {
+        if (getEstabelecimentos().size() <= 2) {
+            return Classificacao.novato;
+        }
+        if (getEstabelecimentos().size() <= 5) {
+            return Classificacao.medio;
+        }
+        if (getEstabelecimentos().size() >= 6 ) {
+            return Classificacao.consistente;
+        }
+        return null;
+    }
+
     public BigDecimal getCalculoTotal() {
        BigDecimal total = new BigDecimal(0.00);
         for (Bebida B : Bebidas) {
             total = total.add(B.getConsumo().multiply(B.getValor()));
         }
         return total.setScale(2, RoundingMode.HALF_EVEN);
-
     }
+
 
     public BigDecimal getCalcularTicketMedio() {
         BigDecimal ticketMedio = new BigDecimal(0.00);

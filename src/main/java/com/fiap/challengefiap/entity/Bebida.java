@@ -21,10 +21,10 @@ public class Bebida {
 
     }
 
-    public Bebida(Long id, String tipo_Cerveja, BigDecimal consumo, BigDecimal valor) {
+    public Bebida(Long id, String tipoCerveja, BigDecimal consumo, BigDecimal valor) {
         this.id = id;
-        tipo_Cerveja = tipo_Cerveja;
-        consumo = consumo;
+        this.tipoCerveja = tipoCerveja;
+        this.consumo = consumo;
         this.valor = valor;
     }
 
