@@ -51,7 +51,7 @@ public class ClienteServiceTest {
 
         Assertions.assertThat(clienteSalvo.getId()).isNotNull();
         Assertions.assertThat(clienteSalvo.getTelefone()).isEqualTo(1935835634);
-        Assertions.assertThat(clienteSalvo.getBebida_Favorita()).isEqualTo("Ipa");
+        Assertions.assertThat(clienteSalvo.getcervejaFavorita()).isEqualTo("Ipa");
         Assertions.assertThat(clienteSalvo.getNome()).isEqualTo("Pablo");
     }
 

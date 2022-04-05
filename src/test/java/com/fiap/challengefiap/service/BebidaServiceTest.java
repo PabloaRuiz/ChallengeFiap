@@ -47,7 +47,7 @@ public class BebidaServiceTest {
         Bebida bebidaSalva = service.cadastrar(bebida);
 
         Assertions.assertThat(bebidaSalva.getId()).isNotNull();
-        Assertions.assertThat(bebidaSalva.getTipo_Cerveja()).isEqualTo("Cerveja");
+        Assertions.assertThat(bebidaSalva.getTipoCerveja()).isEqualTo("Cerveja");
         Assertions.assertThat(bebidaSalva.getConsumo()).isEqualTo(new BigDecimal(1.00));
         Assertions.assertThat(bebidaSalva.getValor()).isEqualTo(new BigDecimal(12.00));
 

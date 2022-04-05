@@ -13,7 +13,7 @@ public class Bebida {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "bebida_id")
     private Long id;
-    private String tipo_Cerveja;
+    private String tipoCerveja;
     private BigDecimal consumo;
     private BigDecimal valor;
 
@@ -36,12 +36,12 @@ public class Bebida {
         this.id = id;
     }
 
-    public String getTipo_Cerveja() {
-        return tipo_Cerveja;
+    public String getTipoCerveja() {
+        return tipoCerveja;
     }
 
-    public void setTipo_Cerveja(String tipo_Cerveja) {
-        tipo_Cerveja = tipo_Cerveja;
+    public void setTipoCerveja(String tipoCerveja) {
+        tipoCerveja = tipoCerveja;
     }
 
     public BigDecimal getConsumo() {
@@ -66,7 +66,7 @@ public class Bebida {
     public String toString() {
         return "Bebida{" +
                 "id=" + id +
-                ", Tipo_Cerveja='" + tipo_Cerveja + '\'' +
+                ", Tipo_Cerveja='" + tipoCerveja + '\'' +
                 ", Consumo=" + consumo +
                 ", valor=" + valor +
                 '}';

@@ -1,7 +1,8 @@
-package com.fiap.challengefiap.controller;
+package com.fiap.challengefiap.service.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fiap.challengefiap.controller.ClienteController;
 import com.fiap.challengefiap.dto.BebidasHistDTO;
 import com.fiap.challengefiap.dto.ClienteInfDTO;
 import com.fiap.challengefiap.dto.EstabelecimentoHistDTO;

@@ -17,7 +17,7 @@ public class Cliente {
     @Column(name = "cliente_id")
     private Long id;
     private int telefone;
-    private String bebida_Favorita;
+    private String cervejaFavorita;
     private String nome;
 
     @ManyToMany
@@ -38,10 +38,10 @@ public class Cliente {
 
     }
 
-    public Cliente(Long id, int telefone, String bebida_Favorita, String nome) {
+    public Cliente(Long id, int telefone, String cervejaFavorita, String nome) {
         this.id = id;
         telefone = telefone;
-        bebida_Favorita = bebida_Favorita;
+        cervejaFavorita = cervejaFavorita;
         nome = nome;
     }
 
@@ -61,12 +61,12 @@ public class Cliente {
         telefone = telefone;
     }
 
-    public String getBebida_Favorita() {
-        return bebida_Favorita;
+    public String getcervejaFavorita() {
+        return cervejaFavorita;
     }
 
-    public void setBebida_Favorita(String bebida_Favorita) {
-        bebida_Favorita = bebida_Favorita;
+    public void cervejaFavorita(String cervejaFavorita) {
+        cervejaFavorita = cervejaFavorita;
     }
 
     public String getNome() {
@@ -122,7 +122,7 @@ public class Cliente {
         return "Cliente{" +
                 "id=" + id +
                 ", Telefone=" + telefone +
-                ", Bebida_Favorita='" + bebida_Favorita + '\'' +
+                ", Bebida_Favorita='" + cervejaFavorita + '\'' +
                 ", Cliente='" + nome + '\'' +
                 ", Estabelecimentos=" + Estabelecimentos +
                 ", Bebidas=" + Bebidas +

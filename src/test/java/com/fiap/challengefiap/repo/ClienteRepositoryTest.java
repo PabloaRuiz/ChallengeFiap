@@ -60,7 +60,7 @@ public class ClienteRepositoryTest {
 
         Assertions.assertThat(ultimaVisita).isNotNull();
         Assertions.assertThat(ultimaVisita.getEstabelecimentos().get(0)).isEqualTo(Bar2);
-        Assertions.assertThat(ultimaVisita.getBebida_Favorita()).isEqualTo(cliente.getBebida_Favorita());
+        Assertions.assertThat(ultimaVisita.getcervejaFavorita()).isEqualTo(cliente.getcervejaFavorita());
     }
 
 }
