@@ -20,23 +20,23 @@ public class ClienteInfDTO {
     private Long Id;
 
     @JsonProperty("Cliente")
-    private String Nome;
+    private String nome;
 
     @JsonProperty("Estilo Preferido")
-    private String Bebida_Favorita;
+    private String cervejaFavorita;
 
     @JsonProperty("Data da ultima visita")
-    private LocalDate Ultima_visita;
+    private LocalDate ultimaVisita;
 
     @JsonProperty("Ticket médio")
-    private BigDecimal Ticket;
+    private BigDecimal ticket;
 
 
     public ClienteInfDTO transformar(Cliente cliente) {
         return new ClienteInfDTO(
                 cliente.getId(),
                 cliente.getNome(),
-                cliente.getBebida_Favorita(),
+                cliente.getcervejaFavorita(),
                 cliente.getEstabelecimentos().get(0).getVisita(),
                 cliente.getCalcularTicketMedio());
     }

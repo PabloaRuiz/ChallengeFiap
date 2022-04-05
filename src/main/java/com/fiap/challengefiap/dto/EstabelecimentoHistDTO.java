@@ -17,7 +17,7 @@ public class EstabelecimentoHistDTO {
 
 
     @JsonProperty("Cliente")
-    private String Cliente;
+    private String cliente;
 
     @JsonProperty("Estabelecimentos")
     private List<Estabelecimento> estabelecimentos;
