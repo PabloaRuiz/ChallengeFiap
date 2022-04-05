@@ -1,9 +1,8 @@
-package com.fiap.challengefiap.Service;
+package com.fiap.challengefiap.service;
 
 
-import com.fiap.challengefiap.Entity.Bebida;
-import com.fiap.challengefiap.Entity.Cliente;
-import com.fiap.challengefiap.Repository.BebidaRepository;
+import com.fiap.challengefiap.entity.Bebida;
+import com.fiap.challengefiap.repo.BebidaRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +14,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 @ExtendWith(SpringExtension.class)
 public class BebidaServiceTest {
@@ -38,7 +36,7 @@ public class BebidaServiceTest {
 
     @Test
     @DisplayName("Cadastrar uma Bebida")
-    void salvarBebida() {
+    void cadastrarBebida() {
         Bebida bebida = CreateBebida();
 
 

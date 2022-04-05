@@ -1,8 +1,8 @@
-package com.fiap.challengefiap.Repository;
+package com.fiap.challengefiap.repo;
 
 
-import com.fiap.challengefiap.Entity.Cliente;
-import com.fiap.challengefiap.Entity.Estabelecimento;
+import com.fiap.challengefiap.entity.Cliente;
+import com.fiap.challengefiap.entity.Estabelecimento;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,13 +29,13 @@ public class ClienteRepositoryTest {
 
     @Test
     @DisplayName("Deve salvar um cliente")
-    void cadastraCliente() {
+    void cadastrarCliente() {
         Cliente cliente = new Cliente(null, 1935835634, "Ipa", "Pablo");
 
         Cliente clienteCadastrado = repository.save(cliente);
 
         Assertions.assertThat(clienteCadastrado.getId()).isNotNull();
-        Assertions.assertThat(clienteCadastrado.getCliente()).isEqualTo(cliente.getCliente());
+        Assertions.assertThat(clienteCadastrado.getNome()).isEqualTo(cliente.getNome());
         Assertions.assertThat(clienteCadastrado.getTelefone()).isEqualTo(cliente.getTelefone());
 
     }
@@ -43,7 +43,7 @@ public class ClienteRepositoryTest {
 
     @Test
     @DisplayName("Deve trazer informações do cliente e a ultima visita realizada em algum estabelecimento")
-    void UltimaVisita() {
+    void buscarInformacoesDoCliente() {
         Cliente cliente = new Cliente(null, 1935835634, "Ipa", "Pablo");
         Estabelecimento Bar = new Estabelecimento(null, "Bar", LocalDate.now());
         Estabelecimento Bar2 = new Estabelecimento(null, "Bar", LocalDate.now().plusDays(6));

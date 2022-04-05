@@ -1,8 +1,8 @@
-package Dto;
+package com.fiap.challengefiap.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fiap.challengefiap.Entity.Bebida;
-import com.fiap.challengefiap.Entity.Cliente;
+import com.fiap.challengefiap.entity.Bebida;
+import com.fiap.challengefiap.entity.Cliente;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -29,9 +29,9 @@ public class BebidasHistDTO {
 
 
     public BebidasHistDTO transformarB(Cliente cliente) {
-        return new BebidasHistDTO(cliente.getCliente(),
+        return new BebidasHistDTO(cliente.getNome(),
                 cliente.getBebidas(),
-                cliente.getValorTotal());
+                cliente.getCalculoTotal());
     }
 
 }

@@ -2,20 +2,8 @@ package com.fiap.challengefiap;
 
 
 
-import com.fiap.challengefiap.Entity.Bebida;
-import com.fiap.challengefiap.Entity.Cliente;
-import com.fiap.challengefiap.Entity.Estabelecimento;
-import com.fiap.challengefiap.Repository.BebidaRepository;
-import com.fiap.challengefiap.Repository.ClienteRepository;
-import com.fiap.challengefiap.Repository.EstabelecimentoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 
 @SpringBootApplication

@@ -1,15 +1,17 @@
-package com.fiap.challengefiap.Repository;
+package com.fiap.challengefiap.repo;
 
-import com.fiap.challengefiap.Entity.Cliente;
+import com.fiap.challengefiap.entity.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
+    Boolean existsClienteByTelefone(Integer telefone);
 
     @Query(value = "select * from tb_clientes as A " +
             " inner Join tb_estabelecimentos_cliente B on A.cliente_id = B.cliente_id " +

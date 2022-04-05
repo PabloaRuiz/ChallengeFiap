@@ -1,14 +1,14 @@
-package com.fiap.challengefiap.Controller;
+package com.fiap.challengefiap.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import Dto.BebidasHistDTO;
-import Dto.ClienteInfDTO;
-import Dto.EstabelecimentoHistDTO;
-import com.fiap.challengefiap.Entity.Bebida;
-import com.fiap.challengefiap.Entity.Cliente;
-import com.fiap.challengefiap.Entity.Estabelecimento;
-import com.fiap.challengefiap.Service.ClienteService;
+import com.fiap.challengefiap.dto.BebidasHistDTO;
+import com.fiap.challengefiap.dto.ClienteInfDTO;
+import com.fiap.challengefiap.dto.EstabelecimentoHistDTO;
+import com.fiap.challengefiap.entity.Bebida;
+import com.fiap.challengefiap.entity.Cliente;
+import com.fiap.challengefiap.entity.Estabelecimento;
+import com.fiap.challengefiap.service.ClienteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,9 +34,9 @@ import java.time.LocalDate;
 @AutoConfigureMockMvc
 public class ClienteControllerTest {
 
-    static String Buscar = "/api/v1/clientes";
-    static String Historico = "/api/v1/clientes/historico/estabelecimento/";
-    static String Historico2 = "/api/v1/clientes/historico/bebidas/";
+    static String BUSCAR = "/api/v1/clientes";
+    static String HISTORICO = "/api/v1/clientes/historico/estabelecimento/";
+    static String HISTORICO_2 = "/api/v1/clientes/historico/bebidas/";
 
 
     @Autowired
@@ -57,13 +57,13 @@ public class ClienteControllerTest {
 
     @Test
     @DisplayName("Busca informações gerai de um determino cliente")
-    void BuscarInformacoes() throws Exception {
+    void buscarInformacoes() throws Exception {
         Estabelecimento Bar = new Estabelecimento(1l, "Bar", LocalDate.now());
         Bebida cerveja = new Bebida(1l, "Cerveja", new BigDecimal(1.00), new BigDecimal(12.00));
         Cliente cliente = new Cliente(1l, 1935835634, "Ipa", "Pablo");
         cliente.adicionaBebidas(cerveja);
         cliente.adicionaEstabelecimento(Bar);
-        ClienteInfDTO clienteDTO = new ClienteInfDTO(1l, "Pablo", "Ipa", null, cliente.getTicketMedio());
+        ClienteInfDTO clienteDTO = new ClienteInfDTO(1l, "Pablo", "Ipa", null, cliente.getCalcularTicketMedio());
 
 
         BDDMockito.given(service.buscar(cliente.getTelefone()))
@@ -73,7 +73,7 @@ public class ClienteControllerTest {
 
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .get(Buscar.concat("/1935835634"))
+                .get(BUSCAR.concat("/1935835634"))
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json);
@@ -86,21 +86,21 @@ public class ClienteControllerTest {
 
     @Test
     @DisplayName("Traz o historico de estabelecimento que o cliente já frenquentou")
-    void HistoricoEstabelecimento() throws Exception {
+    void buscarHistoricoEstabelecimento() throws Exception {
         Estabelecimento Bar = new Estabelecimento(1l, "Bar", null);
         Cliente cliente = new Cliente(1l, 1935835634, "Ipa", "Pablo");
         cliente.adicionaEstabelecimento(Bar);
         EstabelecimentoHistDTO hist = new EstabelecimentoHistDTO();
-        hist.setCliente(cliente.getCliente());
+        hist.setCliente(cliente.getNome());
         hist.setEstabelecimentos(cliente.getEstabelecimentos());
 
-        BDDMockito.given(service.HistoricoEstabelecimento(cliente.getId()))
+        BDDMockito.given(service.buscarHistoricoDeBebidas(cliente.getId()))
                 .willReturn(cliente);
 
         String json = new ObjectMapper().writeValueAsString(hist);
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .get(Historico.concat("/1"))
+                .get(HISTORICO.concat("/1"))
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json);
@@ -113,25 +113,25 @@ public class ClienteControllerTest {
 
     @Test
     @DisplayName("Traz o historico de Bebidas e o valor total já gasto pelo cliente")
-    void HistoricoBedidas() throws Exception {
+    void buscarHistoricoBedidas() throws Exception {
         Cliente cliente = new Cliente(1l, 1935835634, "Ipa", "Pablo");
         Bebida Ipa = new Bebida(1l,"Ipa", new BigDecimal(1.00), new BigDecimal(12.00));
         Bebida Cerveja = new Bebida(1l,"Cerveja", new BigDecimal(4.00), new BigDecimal(7.00));
         cliente.adicionaBebidas(Ipa);
         cliente.adicionaBebidas(Cerveja);
         BebidasHistDTO bebHist = new BebidasHistDTO();
-        bebHist.setCliente(cliente.getCliente());
+        bebHist.setCliente(cliente.getNome());
         bebHist.setBebidas(cliente.getBebidas());
-        bebHist.setTotal(cliente.getValorTotal());
+        bebHist.setTotal(cliente.getCalculoTotal());
 
 
-        BDDMockito.given(service.HistoricoBebidas(cliente.getId()))
+        BDDMockito.given(service.buscarHistoricoDeBebidas(cliente.getId()))
                 .willReturn(cliente);
 
         String json = new ObjectMapper().writeValueAsString(bebHist);
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .get(Historico2.concat("/1"))
+                .get(HISTORICO_2.concat("/1"))
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json);

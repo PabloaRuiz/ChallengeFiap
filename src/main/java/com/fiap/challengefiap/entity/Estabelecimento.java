@@ -1,4 +1,4 @@
-package com.fiap.challengefiap.Entity;
+package com.fiap.challengefiap.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;

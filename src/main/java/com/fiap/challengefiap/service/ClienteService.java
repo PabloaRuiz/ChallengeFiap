@@ -1,12 +1,12 @@
-package com.fiap.challengefiap.Service;
+package com.fiap.challengefiap.service;
 
 
-import com.fiap.challengefiap.Entity.Cliente;
-import com.fiap.challengefiap.Repository.ClienteRepository;
-import org.hibernate.ObjectNotFoundException;
+import com.fiap.challengefiap.entity.Cliente;
+import com.fiap.challengefiap.repo.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
+
+import java.util.Optional;
 
 
 @Service
@@ -24,14 +24,17 @@ public class ClienteService {
     }
 
     public Cliente buscar(Integer telefone) {
+        if(repository.Informativo(telefone) == null || !repository.existsClienteByTelefone(telefone)) {
+              throw new RuntimeException("Cliente não encontrado! ");
+        }
         return repository.Informativo(telefone);
     }
 
-    public Cliente HistoricoEstabelecimento(Long id) {
+    public Cliente buscarHistoricoDeEstabelecimentos(Long id) {
         return repository.HistoricoEstabelecimento(id);
     }
 
-    public Cliente HistoricoBebidas(Long id) {
+    public Cliente buscarHistoricoDeBebidas(Long id) {
         return repository.HistoricoBebidas(id);
     }
 

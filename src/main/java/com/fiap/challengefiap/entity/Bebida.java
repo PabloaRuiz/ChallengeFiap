@@ -1,4 +1,4 @@
-package com.fiap.challengefiap.Entity;
+package com.fiap.challengefiap.entity;
 
 
 import javax.persistence.*;
@@ -13,8 +13,8 @@ public class Bebida {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "bebida_id")
     private Long id;
-    private String Tipo_Cerveja;
-    private BigDecimal Consumo;
+    private String tipo_Cerveja;
+    private BigDecimal consumo;
     private BigDecimal valor;
 
     public Bebida() {
@@ -23,8 +23,8 @@ public class Bebida {
 
     public Bebida(Long id, String tipo_Cerveja, BigDecimal consumo, BigDecimal valor) {
         this.id = id;
-        Tipo_Cerveja = tipo_Cerveja;
-        Consumo = consumo;
+        tipo_Cerveja = tipo_Cerveja;
+        consumo = consumo;
         this.valor = valor;
     }
 
@@ -37,19 +37,19 @@ public class Bebida {
     }
 
     public String getTipo_Cerveja() {
-        return Tipo_Cerveja;
+        return tipo_Cerveja;
     }
 
     public void setTipo_Cerveja(String tipo_Cerveja) {
-        Tipo_Cerveja = tipo_Cerveja;
+        tipo_Cerveja = tipo_Cerveja;
     }
 
     public BigDecimal getConsumo() {
-        return Consumo;
+        return consumo;
     }
 
     public void setConsumo(BigDecimal consumo) {
-        Consumo = consumo;
+        consumo = consumo;
     }
 
     public BigDecimal getValor() {
@@ -66,8 +66,8 @@ public class Bebida {
     public String toString() {
         return "Bebida{" +
                 "id=" + id +
-                ", Tipo_Cerveja='" + Tipo_Cerveja + '\'' +
-                ", Consumo=" + Consumo +
+                ", Tipo_Cerveja='" + tipo_Cerveja + '\'' +
+                ", Consumo=" + consumo +
                 ", valor=" + valor +
                 '}';
     }

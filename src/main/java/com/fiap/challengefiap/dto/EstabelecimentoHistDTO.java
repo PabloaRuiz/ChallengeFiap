@@ -1,8 +1,8 @@
-package Dto;
+package com.fiap.challengefiap.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fiap.challengefiap.Entity.Cliente;
-import com.fiap.challengefiap.Entity.Estabelecimento;
+import com.fiap.challengefiap.entity.Cliente;
+import com.fiap.challengefiap.entity.Estabelecimento;
 import lombok.*;
 
 import java.util.List;
@@ -23,6 +23,6 @@ public class EstabelecimentoHistDTO {
     private List<Estabelecimento> estabelecimentos;
 
     public EstabelecimentoHistDTO transformar(Cliente cliente) {
-        return new EstabelecimentoHistDTO(cliente.getCliente(), cliente.getEstabelecimentos());
+        return new EstabelecimentoHistDTO(cliente.getNome(), cliente.getEstabelecimentos());
     }
 }

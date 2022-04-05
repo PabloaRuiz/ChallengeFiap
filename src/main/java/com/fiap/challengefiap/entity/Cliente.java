@@ -1,4 +1,4 @@
-package com.fiap.challengefiap.Entity;
+package com.fiap.challengefiap.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -16,9 +16,9 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "cliente_id")
     private Long id;
-    private int Telefone;
-    private String Bebida_Favorita;
-    private String Cliente;
+    private int telefone;
+    private String bebida_Favorita;
+    private String nome;
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "cliente_id"),
@@ -33,15 +33,16 @@ public class Cliente {
             name = "tb_bebidas_cliente")
     private List<Bebida> Bebidas = new ArrayList<Bebida>();
 
+
     public Cliente() {
 
     }
 
-    public Cliente(Long id, int telefone, String bebida_Favorita, String cliente) {
+    public Cliente(Long id, int telefone, String bebida_Favorita, String nome) {
         this.id = id;
-        Telefone = telefone;
-        Bebida_Favorita = bebida_Favorita;
-        Cliente = cliente;
+        telefone = telefone;
+        bebida_Favorita = bebida_Favorita;
+        nome = nome;
     }
 
     public Long getId() {
@@ -53,27 +54,27 @@ public class Cliente {
     }
 
     public int getTelefone() {
-        return Telefone;
+        return telefone;
     }
 
     public void setTelefone(int telefone) {
-        Telefone = telefone;
+        telefone = telefone;
     }
 
     public String getBebida_Favorita() {
-        return Bebida_Favorita;
+        return bebida_Favorita;
     }
 
     public void setBebida_Favorita(String bebida_Favorita) {
-        Bebida_Favorita = bebida_Favorita;
+        bebida_Favorita = bebida_Favorita;
     }
 
-    public String getCliente() {
-        return Cliente;
+    public String getNome() {
+        return nome;
     }
 
-    public void setCliente(String cliente) {
-        Cliente = cliente;
+    public void setNome(String nome) {
+        nome = nome;
     }
 
     public List<Estabelecimento> getEstabelecimentos() {
@@ -100,7 +101,7 @@ public class Cliente {
         this.Bebidas = bebidas;
     }
 
-    public BigDecimal getValorTotal() {
+    public BigDecimal getCalculoTotal() {
        BigDecimal total = new BigDecimal(0.00);
         for (Bebida B : Bebidas) {
             total = total.add(B.getConsumo().multiply(B.getValor()));
@@ -109,20 +110,20 @@ public class Cliente {
 
     }
 
-    public BigDecimal getTicketMedio() {
-        BigDecimal TicketMedio = new BigDecimal(0.00);
-        BigDecimal Visitas = BigDecimal.valueOf(Estabelecimentos.size());
-        TicketMedio = getValorTotal().divide(Visitas);
-        return TicketMedio.setScale(2, RoundingMode.HALF_EVEN);
+    public BigDecimal getCalcularTicketMedio() {
+        BigDecimal ticketMedio = new BigDecimal(0.00);
+        BigDecimal visitas = BigDecimal.valueOf(Estabelecimentos.size());
+        ticketMedio = getCalculoTotal().divide(visitas);
+        return ticketMedio.setScale(2, RoundingMode.HALF_EVEN);
     }
 
     @Override
     public String toString() {
         return "Cliente{" +
                 "id=" + id +
-                ", Telefone=" + Telefone +
-                ", Bebida_Favorita='" + Bebida_Favorita + '\'' +
-                ", Cliente='" + Cliente + '\'' +
+                ", Telefone=" + telefone +
+                ", Bebida_Favorita='" + bebida_Favorita + '\'' +
+                ", Cliente='" + nome + '\'' +
                 ", Estabelecimentos=" + Estabelecimentos +
                 ", Bebidas=" + Bebidas +
                 '}';

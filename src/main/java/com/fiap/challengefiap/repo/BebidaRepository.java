@@ -1,6 +1,6 @@
-package com.fiap.challengefiap.Repository;
+package com.fiap.challengefiap.repo;
 
-import com.fiap.challengefiap.Entity.Bebida;
+import com.fiap.challengefiap.entity.Bebida;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

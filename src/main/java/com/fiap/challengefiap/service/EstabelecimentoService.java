@@ -1,9 +1,9 @@
-package com.fiap.challengefiap.Service;
+package com.fiap.challengefiap.service;
 
 
 
-import com.fiap.challengefiap.Entity.Estabelecimento;
-import com.fiap.challengefiap.Repository.EstabelecimentoRepository;
+import com.fiap.challengefiap.entity.Estabelecimento;
+import com.fiap.challengefiap.repo.EstabelecimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

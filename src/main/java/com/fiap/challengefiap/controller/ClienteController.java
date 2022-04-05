@@ -1,16 +1,14 @@
-package com.fiap.challengefiap.Controller;
+package com.fiap.challengefiap.controller;
 
 
-import Dto.BebidasHistDTO;
-import Dto.ClienteInfDTO;
-import Dto.EstabelecimentoHistDTO;
-import com.fiap.challengefiap.Entity.Cliente;
-import com.fiap.challengefiap.Service.ClienteService;
+import com.fiap.challengefiap.dto.BebidasHistDTO;
+import com.fiap.challengefiap.dto.ClienteInfDTO;
+import com.fiap.challengefiap.dto.EstabelecimentoHistDTO;
+import com.fiap.challengefiap.entity.Cliente;
+import com.fiap.challengefiap.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
 
 @RestController
 @RequestMapping("/api/v1/clientes")
@@ -27,10 +25,7 @@ public class ClienteController {
 
     @GetMapping("{telefone}")
     @ResponseStatus(HttpStatus.FOUND)
-    public ClienteInfDTO buscar(@PathVariable Integer telefone){
-        if (telefone == null)  {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+    public ClienteInfDTO buscarClientePorTelefone(@PathVariable Integer telefone){
          Cliente obj = service.buscar(telefone);
          ClienteInfDTO clientesDto = new ClienteInfDTO().transformar(obj);
          return clientesDto;
@@ -38,8 +33,8 @@ public class ClienteController {
 
     @GetMapping("/historico/estabelecimento/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    public EstabelecimentoHistDTO Historico(@PathVariable Long id) {
-        Cliente obj = service.HistoricoEstabelecimento(id);
+    public EstabelecimentoHistDTO buscarHistoricoDeEstabelecimentosPorId(@PathVariable Long id) {
+        Cliente obj = service.buscarHistoricoDeEstabelecimentos(id);
         EstabelecimentoHistDTO clientDto = new EstabelecimentoHistDTO().transformar(obj);
         return clientDto;
 
@@ -47,8 +42,8 @@ public class ClienteController {
 
     @GetMapping("/historico/bebidas/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    public BebidasHistDTO HistoricoBebidas(@PathVariable Long id) {
-        Cliente obj = service.HistoricoBebidas(id);
+    public BebidasHistDTO buscarHistoricoDeBebidasPorId(@PathVariable Long id) {
+        Cliente obj = service.buscarHistoricoDeBebidas(id);
         BebidasHistDTO clientDto = new BebidasHistDTO().transformarB(obj);
         return clientDto;
     }

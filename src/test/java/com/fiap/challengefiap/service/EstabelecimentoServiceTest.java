@@ -1,8 +1,7 @@
-package com.fiap.challengefiap.Service;
+package com.fiap.challengefiap.service;
 
-import com.fiap.challengefiap.Entity.Cliente;
-import com.fiap.challengefiap.Entity.Estabelecimento;
-import com.fiap.challengefiap.Repository.EstabelecimentoRepository;
+import com.fiap.challengefiap.entity.Estabelecimento;
+import com.fiap.challengefiap.repo.EstabelecimentoRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,7 +34,7 @@ public class EstabelecimentoServiceTest {
 
     @Test
     @DisplayName("Cadastrar estabelecimento")
-    void salvarEstabelecimento() {
+    void cadastrarEstabelecimento() {
         Estabelecimento estabelecimento = CreateEstabelecimento();
 
         Mockito.when(repository.save(estabelecimento))

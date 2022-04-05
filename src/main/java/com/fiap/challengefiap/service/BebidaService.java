@@ -1,10 +1,8 @@
-package com.fiap.challengefiap.Service;
+package com.fiap.challengefiap.service;
 
-import com.fiap.challengefiap.Entity.Bebida;
-import com.fiap.challengefiap.Repository.BebidaRepository;
+import com.fiap.challengefiap.entity.Bebida;
+import com.fiap.challengefiap.repo.BebidaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 

@@ -1,10 +1,10 @@
-package com.fiap.challengefiap.Service;
+package com.fiap.challengefiap.service;
 
 
-import com.fiap.challengefiap.Entity.Bebida;
-import com.fiap.challengefiap.Entity.Cliente;
-import com.fiap.challengefiap.Entity.Estabelecimento;
-import com.fiap.challengefiap.Repository.ClienteRepository;
+import com.fiap.challengefiap.entity.Bebida;
+import com.fiap.challengefiap.entity.Cliente;
+import com.fiap.challengefiap.entity.Estabelecimento;
+import com.fiap.challengefiap.repo.ClienteRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -39,7 +39,7 @@ public class ClienteServiceTest {
 
     @Test
     @DisplayName("Cadastrar Cliente")
-    void salvarCliente() {
+    void cadastrarCliente() {
         Cliente cliente =  CreateCliente();
 
 
@@ -52,12 +52,12 @@ public class ClienteServiceTest {
         Assertions.assertThat(clienteSalvo.getId()).isNotNull();
         Assertions.assertThat(clienteSalvo.getTelefone()).isEqualTo(1935835634);
         Assertions.assertThat(clienteSalvo.getBebida_Favorita()).isEqualTo("Ipa");
-        Assertions.assertThat(clienteSalvo.getCliente()).isEqualTo("Pablo");
+        Assertions.assertThat(clienteSalvo.getNome()).isEqualTo("Pablo");
     }
 
     @Test
     @DisplayName("Buscar informações essenciais sobre o cliente e trazer dados da ultima visita")
-    void UltimaVisita() throws Exception {
+    void buscarInformacoesDoCliente() throws Exception {
         Long id = 1l;
         Cliente cliente = CreateCliente();
         Estabelecimento Bar = new Estabelecimento(1l, "Bar", LocalDate.now());
@@ -79,7 +79,7 @@ public class ClienteServiceTest {
 
     @Test
     @DisplayName("Historico de bebidas já consumidas pelo cliente, e total de valor já gasto")
-    void HistoricoBebidas() {
+    void buscarHistoricoDeBebidas() {
         Long id = 1l;
         Cliente cliente = CreateCliente();
         Bebida Cerveja = new Bebida(1l, "Cerveja", new BigDecimal(1.00), new BigDecimal(12.00));
@@ -90,19 +90,19 @@ public class ClienteServiceTest {
         Mockito.when(repository.HistoricoBebidas(id))
                 .thenReturn(cliente);
 
-        Cliente historicoBebidas = service.HistoricoBebidas(id);
+        Cliente historicoBebidas = service.buscarHistoricoDeBebidas(id);
 
 
         Assertions.assertThat(historicoBebidas).isNotNull();
         Assertions.assertThat(cliente.getBebidas().containsAll(historicoBebidas.getBebidas()));
         Assertions.assertThat(historicoBebidas.getBebidas().get(0)).isEqualTo(Cerveja);
-        Assertions.assertThat(historicoBebidas.getValorTotal()).isEqualTo(new BigDecimal(12.00).setScale(2, RoundingMode.HALF_EVEN));
+        Assertions.assertThat(historicoBebidas.getCalculoTotal()).isEqualTo(new BigDecimal(12.00).setScale(2, RoundingMode.HALF_EVEN));
     }
 
 
     @Test
     @DisplayName("Historico de estabelecimento já visitados pelo cliente")
-    void HistoricoEstabelecimento() {
+    void buscarHistoricoDeEstabelecimento() {
         Long id = 1l;
         Cliente cliente = CreateCliente();
         Estabelecimento Bar = new Estabelecimento(1l, "Bar", LocalDate.now());
@@ -113,7 +113,7 @@ public class ClienteServiceTest {
         Mockito.when(repository.HistoricoEstabelecimento(id))
                 .thenReturn(cliente);
 
-        Cliente historicoEstabelecimento = service.HistoricoEstabelecimento(id);
+        Cliente historicoEstabelecimento = service.buscarHistoricoDeEstabelecimentos(id);
 
 
         Assertions.assertThat(historicoEstabelecimento).isNotNull();

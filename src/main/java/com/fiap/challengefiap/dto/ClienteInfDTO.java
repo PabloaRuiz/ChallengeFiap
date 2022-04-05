@@ -1,11 +1,12 @@
-package Dto;
+package com.fiap.challengefiap.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fiap.challengefiap.Entity.Cliente;
+import com.fiap.challengefiap.entity.Cliente;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 
 @Getter
@@ -34,10 +35,10 @@ public class ClienteInfDTO {
     public ClienteInfDTO transformar(Cliente cliente) {
         return new ClienteInfDTO(
                 cliente.getId(),
-                cliente.getCliente(),
+                cliente.getNome(),
                 cliente.getBebida_Favorita(),
                 cliente.getEstabelecimentos().get(0).getVisita(),
-                cliente.getTicketMedio());
+                cliente.getCalcularTicketMedio());
     }
 
 }
