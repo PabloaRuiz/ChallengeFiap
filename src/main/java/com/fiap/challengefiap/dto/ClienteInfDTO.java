@@ -31,9 +31,8 @@ public class ClienteInfDTO {
     @JsonProperty("Ticket médio")
     private BigDecimal ticket;
 
-    @JsonProperty("Classificacao")
+    @JsonProperty("Classificação no raking")
     private Classificacao classificacao;
-
 
 
     public ClienteInfDTO transformar(Cliente cliente) {
@@ -43,7 +42,7 @@ public class ClienteInfDTO {
                 cliente.getcervejaFavorita(),
                 cliente.getEstabelecimentos().get(0).getVisita(),
                 cliente.getCalcularTicketMedio(),
-                cliente.getClassificacao());
+                cliente.raking());
     }
 
 }

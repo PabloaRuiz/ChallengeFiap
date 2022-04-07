@@ -2,13 +2,13 @@ package com.fiap.challengefiap.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fiap.challengefiap.controller.ClienteController;
 import com.fiap.challengefiap.dto.BebidasHistDTO;
 import com.fiap.challengefiap.dto.ClienteInfDTO;
 import com.fiap.challengefiap.dto.EstabelecimentoHistDTO;
 import com.fiap.challengefiap.entity.Bebida;
 import com.fiap.challengefiap.entity.Cliente;
 import com.fiap.challengefiap.entity.Estabelecimento;
+import com.fiap.challengefiap.entity.enums.Classificacao;
 import com.fiap.challengefiap.service.ClienteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -64,7 +64,7 @@ public class ClienteControllerTest {
         Cliente cliente = new Cliente(1l, 1935835634, "Ipa", "Pablo");
         cliente.adicionaBebidas(cerveja);
         cliente.adicionaEstabelecimento(Bar);
-        ClienteInfDTO clienteDTO = new ClienteInfDTO(1l, "Pablo", "Ipa", null, cliente.getCalcularTicketMedio(), cliente.getClassificacao());
+        ClienteInfDTO clienteDTO = new ClienteInfDTO(1l, "Pablo", "Ipa", null, cliente.getCalcularTicketMedio(), cliente.raking() );
 
 
         BDDMockito.given(service.buscar(cliente.getTelefone()))

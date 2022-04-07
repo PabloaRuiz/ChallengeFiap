@@ -1,6 +1,7 @@
 package com.fiap.challengefiap.entity;
 
 import com.fiap.challengefiap.entity.enums.Classificacao;
+import com.fiap.challengefiap.exception.Excecao;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -21,7 +22,6 @@ public class Cliente {
     private int telefone;
     private String cervejaFavorita;
     private String nome;
-    private Classificacao classificacao;
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "cliente_id"),
@@ -112,17 +112,17 @@ public class Cliente {
         this.cervejaFavorita = cervejaFavorita;
     }
 
-    public Classificacao getClassificacao() {
+    public Classificacao raking() {
         if (getEstabelecimentos().size() <= 2) {
             return Classificacao.novato;
         }
-        if (getEstabelecimentos().size() <= 5) {
+        if (getEstabelecimentos().size() <= 6) {
             return Classificacao.medio;
         }
-        if (getEstabelecimentos().size() >= 6 ) {
+        if (getEstabelecimentos().size() >= 10) {
             return Classificacao.consistente;
         }
-        return null;
+        throw new Excecao("Cliente não possui informaçõea para suficiente ser classificado");
     }
 
     public BigDecimal getCalculoTotal() {
@@ -152,4 +152,6 @@ public class Cliente {
                 ", Bebidas=" + Bebidas +
                 '}';
     }
+
+
 }
