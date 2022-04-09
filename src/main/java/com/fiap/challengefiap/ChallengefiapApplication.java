@@ -4,13 +4,12 @@ package com.fiap.challengefiap;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 @SpringBootApplication
+@EnableScheduling
 public class ChallengefiapApplication  {
-
-
-
 
 
     public static void main(String[] args) {

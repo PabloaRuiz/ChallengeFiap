@@ -1,7 +1,6 @@
 package com.fiap.challengefiap.entity;
 
 import com.fiap.challengefiap.entity.enums.Classificacao;
-import com.fiap.challengefiap.exception.Excecao;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -122,7 +121,7 @@ public class Cliente {
         if (getEstabelecimentos().size() >= 10) {
             return Classificacao.consistente;
         }
-        throw new Excecao("Cliente não possui informaçõea para suficiente ser classificado");
+        return Classificacao.iniciante;
     }
 
     public BigDecimal getCalculoTotal() {

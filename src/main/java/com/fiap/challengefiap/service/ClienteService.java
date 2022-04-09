@@ -24,9 +24,6 @@ public class ClienteService {
     }
 
     public Cliente buscar(Integer telefone) {
-        if(repository.Informativo(telefone) == null || !repository.existsClienteByTelefone(telefone)) {
-              throw new RuntimeException("Cliente não encontrado! ");
-        }
         return repository.Informativo(telefone);
     }
 

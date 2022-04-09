@@ -63,4 +63,5 @@ public class ClienteRepositoryTest {
         Assertions.assertThat(ultimaVisita.getcervejaFavorita()).isEqualTo(cliente.getcervejaFavorita());
     }
 
+
 }

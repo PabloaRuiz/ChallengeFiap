@@ -4,6 +4,7 @@ import com.fiap.challengefiap.entity.Cliente;
 
 public enum Classificacao {
 
+    iniciante,
     novato,
     medio,
     consistente;
